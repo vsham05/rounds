@@ -2,13 +2,13 @@ import sys
 
 from random import randrange 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt5 import uic
+from UI import Ui_Form
 from PyQt5.QtGui import QPainter, QColor
 
-class Rounds(QWidget):
+class Rounds(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)        
         self.clck = False
         self.summon_round_btn.clicked.connect(self.change_clc)
     
@@ -24,8 +24,8 @@ class Rounds(QWidget):
             qp.end()
 
     def draw_flag(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
         for i in range(randrange(5, 15)):
+            qp.setBrush(QColor(randrange(0, 255), randrange(0, 255), randrange(0, 255)))
             size = randrange(50, 150)
             coord1 = randrange(0, 300)
             coord2 = randrange(0, 300)
